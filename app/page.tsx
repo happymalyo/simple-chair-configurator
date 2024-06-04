@@ -1,46 +1,25 @@
 "use client";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
-function Box(props) {
-  const ref = useRef();
-  const [clicked, click] = useState(false);
-  const [hovered, hover] = useState(false);
-  useFrame((state, delta) => {
-    ref.current.rotation.x += delta;
-  });
-  return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={"hotpink"} />
-    </mesh>
-  );
-}
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Model } from "./components/ChairModel";
+import { OrbitControls } from "@react-three/drei";
+import Loader from "./components/Loader";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div id="canvas-container">
+      <div id="canvas-container" style={{ width: "90vw", height: "100vh" }}>
         <Canvas>
-          <ambientLight intensity={0.1} />
-          <spotLight
-            position={[10, 10, 10]}
-            angle={0.15}
-            penumbra={1}
-            decay={0}
-            intensity={Math.PI}
+          <ambientLight intensity={0.5} />
+          <directionalLight
+            castShadow
+            position={[2.5, 5, 5]}
+            intensity={1.5}
+            shadow-mapSize={[1024, 1024]}
           />
-          <pointLight
-            position={[-10, -10, -10]}
-            decay={0}
-            intensity={Math.PI}
-          />
-          <Box position={[-1.2, 0, 0]} />
+          <Suspense fallback={<Loader />}>
+            <Model />
+          </Suspense>
+          <OrbitControls />
         </Canvas>
       </div>
     </main>
