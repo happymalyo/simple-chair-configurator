@@ -5,7 +5,7 @@ import { Model } from "./components/ChairModel";
 import { OrbitControls, useGLTF, useTexture, Decal } from "@react-three/drei";
 import Loader from "./components/Loader";
 import Image from "next/image";
-import * as THREE from 'three';
+import * as THREE from 'three'; 
 
 export default function Home() {
   const [texture, setTexture] = useState("MK_Wood_02.jpg");
