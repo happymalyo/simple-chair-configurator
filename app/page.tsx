@@ -19,7 +19,17 @@ export default function Home() {
           <Suspense fallback={<Loader />}>
             <Model />
           </Suspense>
-          <OrbitControls />
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+          <axesHelper
+            scale={2}
+            position={[0, 0, 0]}
+            onUpdate={(self) => self.setColors("#ff2080", "#20ff80", "#2080ff")}
+          />
         </Canvas>
       </div>
     </main>
