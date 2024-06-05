@@ -8,14 +8,14 @@ import { useTexture, Center, Decal } from "@react-three/drei";
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/models/MAD_KING_armchair950_.gltf");
-  const texture = useTexture("/1200px-Starbucks_Logo_ab_2011.svg.png");
+  const texture = useTexture(`/maps/${props.texture}`);
   // Update the material to use the loaded texture
-  // materials["01 - Default"].map = texture;
-  // materials["01 - Default"].needsUpdate = true;
+  materials["01 - Default"].map = texture;
+  materials["01 - Default"].needsUpdate = true;
   return (
     <>
       <group {...props} dispose={null}>
-        <Center top>
+        <Center middle position={[0, 1, 0]}>
           <mesh
             name="MAD_KING_armchair950_001"
             scale={0.1}
@@ -23,16 +23,9 @@ export function Model(props) {
             receiveShadow
             geometry={nodes.MAD_KING_armchair950_001.geometry}
             material={materials["01 - Default"]}
-            position={[1.2, -12, 0]}
-            rotation={[-Math.PI / 2, 0, 0]}
-          >
-            <Decal
-              position={[0, 0, 0]} // Adjust position relative to the mesh
-              rotation={[0, 0, 0]} // Adjust rotation as needed
-              scale={[0.5, 0.5, 0.5]} // Adjust scale as needed
-              map={texture}
-            />
-          </mesh>
+            position={[1.2, -13, 0]}
+            rotation={[-Math.PI / 2.5, 0, 0]}
+          ></mesh>
         </Center>
       </group>
     </>
