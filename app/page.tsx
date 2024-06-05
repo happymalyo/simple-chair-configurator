@@ -2,13 +2,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Model } from "./components/ChairModel";
-import {
-  useGLTF,
-  useTexture,
-  Center,
-  Decal,
-  OrbitControls,
-} from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import Loader from "./components/Loader";
 export default function Home() {
   return (
@@ -23,7 +17,7 @@ export default function Home() {
             shadow-mapSize={[1024, 1024]}
           />
           <Suspense fallback={<Loader />}>
-            <Model scale={2} />
+            <Model />
           </Suspense>
           {/*}
           <OrbitControls
@@ -38,9 +32,6 @@ export default function Home() {
             position={[0, 0, 0]}
             onUpdate={(self) => self.setColors("#ff2080", "#20ff80", "#2080ff")}
           />
-          <Center position={[-1.25, 2, 0]}>
-            <Cup scale={2} />
-          </Center>
         </Canvas>
       </div>
     </main>
@@ -49,9 +40,7 @@ export default function Home() {
 
 function Cup(props) {
   const { nodes, materials } = useGLTF("/models/coffee-transformed.glb");
-  const texture = useTexture(
-    "/vecteezy_illustration-of-eagle-head-logo-with_24684356.png",
-  );
+  const texture = useTexture("/1200px-Starbucks_Logo_ab_2011.svg.png");
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -61,7 +50,7 @@ function Cup(props) {
         material={materials["13 - Default"]}
       >
         <Decal
-          position={[0.1, 0.9, 0.3]}
+          position={[0, 0.75, 0.3]}
           rotation={[0, 0, 0]}
           scale={[0.52, 0.6, 0.6]}
           map={texture}

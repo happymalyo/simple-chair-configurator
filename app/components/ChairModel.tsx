@@ -15,22 +15,25 @@ export function Model(props) {
   return (
     <>
       <group {...props} dispose={null}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.MAD_KING_armchair950_001.geometry}
-          material={materials["01 - Default"]}
-          position={[0, 0, 0]}
-          rotation={[-Math.PI / 2, 0, 0]}
-        >
-          <Decal
-            position={[0, 0, 0.05]} // Adjust position relative to the mesh
-            rotation={[0, 0, 0]}
-            // scale={[0.5, 0.5, 0.5]} // Adjust scale as needed
-            scale={[0.1, 0.1, 0.1]} // Small scale
-            map={texture}
-          />
-        </mesh>
+        <Center top>
+          <mesh
+            name="MAD_KING_armchair950_001"
+            scale={0.1}
+            castShadow
+            receiveShadow
+            geometry={nodes.MAD_KING_armchair950_001.geometry}
+            material={materials["01 - Default"]}
+            position={[1.2, -12, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          >
+            <Decal
+              position={[0, 0, 0]} // Adjust position relative to the mesh
+              rotation={[0, 0, 0]} // Adjust rotation as needed
+              scale={[0.5, 0.5, 0.5]} // Adjust scale as needed
+              map={texture}
+            />
+          </mesh>
+        </Center>
       </group>
     </>
   );
