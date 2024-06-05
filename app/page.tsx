@@ -5,6 +5,8 @@ import { Model } from "./components/ChairModel";
 import { OrbitControls, useGLTF, useTexture, Decal } from "@react-three/drei";
 import Loader from "./components/Loader";
 import Image from "next/image";
+import * as THREE from 'three';
+
 export default function Home() {
   const [texture, setTexture] = useState("MK_Wood_02.jpg");
   return (
@@ -63,6 +65,7 @@ export default function Home() {
 function Cup(props) {
   const { nodes, materials } = useGLTF("/models/coffee-transformed.glb");
   const texture = useTexture("/maps/pngaaa.com-257342.png");
+  materials["13 - Default"].side = THREE.FrontSide;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -78,6 +81,7 @@ function Cup(props) {
           rotation={[0, 0, 0]}
           scale={[0.52, 0.6, 0.6]}
           map={texture}
+          depthTest={true} // Ensure depth test is enabled
         />
       </mesh>
     </group>
